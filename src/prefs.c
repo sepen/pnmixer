@@ -86,6 +86,11 @@ find_vol_control_command(void)
 		cmd++;
 	}
 
+	/* Fallback volume command */
+	if (g_find_program_in_path("xterm"))
+		if (g_find_program_in_path("alsamixer"))
+			return "xterm -e alsamixer";
+
 	return NULL;
 }
 
